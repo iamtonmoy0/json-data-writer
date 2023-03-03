@@ -1,9 +1,9 @@
-use serde:{Deserialize,Serialize};
+use serde::{Deserialize,Serialize};
 
 
 #[derive(Serialize,Deserialize)]
 struct Paragraph{
-    name:"String"
+    name:String
 }
 
 #[derive(Serialize,Deserialize)]
@@ -15,5 +15,19 @@ struct Article{
 
 
 fn main() {
+    let article: Article = Article { article: String::from("how to work with json in Rust"), author: String::from ("Tonmoy"), paragraph: vec![
+        Paragraph{
+            name: String::from("first sentence")
+        },
+        Paragraph{
+            name: String::from("body of the paragraph")
+        },
+        Paragraph{
+            name: String::from("end of paragraph")
+        }
+    ] };
+    let json = serde_json::to_string(&article).unwrap();
+    print!("the json is: {}",json)
+
     
 }
